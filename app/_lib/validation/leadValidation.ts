@@ -2,11 +2,25 @@
 
 export const leadSchema = z.object({
   nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres').max(100),
+
   email: z.string().email('Email inválido').toLowerCase(),
-  telefone: z.string().min(10, 'Telefone inválido').max(20),
-  cidade: z.string().min(2).max(100),
+
+  telefone: z
+    .string()
+    .max(20)
+    .optional()
+    .default('not-informed'),
+
+  cidade: z
+    .string()
+    .max(100)
+    .optional()
+    .default('not-informed'),
+
   servicoInteresse: z.string().min(3, 'Selecione um serviço'),
+
   mensagem: z.string().max(1000).optional().nullable(),
+
   idioma: z.enum(['en', 'es', 'pt']).default('en'),
 });
 
